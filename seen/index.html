@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <div><a>The form </a>|  <a href='all.html'>Completed forms</a></div><br><br>
+
+      
+      </head>
+
+     <body>
+          <label for='name'>Name :</label>
+         <input type='text' name='name' id='name'><br><br>
+
+
+         How many producut have you sold : <br>
+         <input type='number' id='thenumber' value='0'><br><br>
+
+          Description :<br>
+         <textarea cols="40" rows="5" id='dis'></textarea><br><br>
+
+
+         <button id='thebutton'>Submit</button>
+    <script>
+    const submit=document.getElementById('thebutton');
+    submit.addEventListener('click',async event =>{
+
+     const name=document.getElementById('name').value;
+     const number=document.getElementById('thenumber').value;
+     const dis=document.getElementById('dis').value;
+
+
+     const data={name , number , dis};
+     const options={
+         method:'POST',
+         headers:{
+             'Content-Type':'application/json'
+         },
+         body:JSON.stringify(data)
+     }
+    const response= await fetch('/api',options);
+    const json= await response.json();
+    console.log(json);
+
+
+    });
+    </script>
+  </body>
+</html>
